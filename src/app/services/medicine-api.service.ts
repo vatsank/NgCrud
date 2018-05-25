@@ -20,6 +20,11 @@ export class MedicineApiService {
       return this.http.delete<Medicine>(this.baseURL + '/' + codeNumber);
      }
 
+      update(medicine: Medicine): Observable<Medicine> {
+
+
+        return this.http.put<Medicine>(this.baseURL, medicine);
+      }
      add(medicine): Observable<Medicine> {
 
       const headers =

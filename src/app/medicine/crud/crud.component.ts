@@ -31,6 +31,7 @@ export class CrudComponent implements OnInit {
    edit(val) {
        console.log(val);
        this.medicine = val;
+       this.service.update(this.medicine).subscribe(data => this.medicine = data);
    }
 
    remove(val) {
