@@ -1,0 +1,56 @@
+<header class="header header-nav ">
+    <h1 appInsertText addText='Mastered Angular'></h1>
+</header>
+
+<section>
+
+    <form #frm='ngForm' (ngSubmit)="add(frm.value)" class="form">
+        <div class='form-group'>
+            <label for="codeNumber">CodeNumber</label>
+            <input type="text" name='codeNumber' [ngModel]='medicine.id' class='form-control'>
+        </div>
+        <div class='form-group'>
+            <label for="name">Medicine Name</label>
+            <input type="text" name='name' [ngModel]='medicine.name' class='form-control'>
+        </div>
+        <div class='form-group'>
+            <label for="mfgBy">Manufacturer</label>
+            <input type="text" name='mfgBy' [ngModel]='medicine.mfgBy' class='form-control'>
+        </div>
+        <div>
+            <label for="ratePerUnit">ratePerUnit</label>
+            <input type="text" name='ratePerUnit' [ngModel]='medicine.ratePerUnit' class='form-control'>
+        </div>
+        <div>
+            <label for="category">category</label>
+            <input type="text" name='category' [ngModel]='medicine.category' class='form-control'></div>
+        <div>
+            <input type="submit" value="Add" class="btn btn-primary">
+        </div>
+    </form>
+
+    <div class='card'>
+        <label>Search By:</label> <input type='text' [(ngModel)]='srchCondition'>
+    </div>
+    <table class='table table-striped'>
+        <tr>
+            <th>Code Number</th>
+            <th>Medicine Name</th>
+            <th>Manufacturer</th>
+            <th>Rate Per Unit</th>
+            <th>Category</th>
+        </tr>
+
+        <tr *ngFor="let eachMedicine  of medList |filter:'ratePerUnit':srchCondition">
+            <td>{{eachMedicine.codeNumber}}</td>
+            <td>{{eachMedicine.name}}</td>
+            <td>{{eachMedicine.mfgBy | uppercase}}</td>
+            <td>{{eachMedicine.ratePerUnit |currency:' INR '}}</td>
+            <td>{{eachMedicine.category}}</td>
+            <td><button class="btn btn-info " (click)='edit(eachMedicine) '>Edit</button></td>
+            <td><button class='btn btn-danger ' (click)='remove(eachMedicine.codeNumber) '>Delete</button></td>
+        </tr>
+
+    </table>
+</section>
+<footer></footer>
